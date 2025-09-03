@@ -1,4 +1,6 @@
 import { createContext, useState } from "react"
+import { addDoc, collection} from "firebase/firestore"
+import { db } from "../firebaseConfig"
 
 export const GoalsContext = createContext()
 
@@ -9,7 +11,8 @@ export function GoalsProvider({ children }) {
   }
  
   async function createGoal(goalData) {
-    console.log(goalData)
+   // console.log(goalData)
+   await addDoc(collection(db,'goals'), goalData)
   }
 
   async function deleteGoal() {
@@ -26,4 +29,5 @@ export function GoalsProvider({ children }) {
     </GoalsContext.Provider>
   )
 }
-//
+
+////
